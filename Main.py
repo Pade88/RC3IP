@@ -10,38 +10,38 @@ class IPinfo():
 		self.join()
 
 	def checkIPClass(self):
-		if int(self.IP[0]) in range(class_A_IP_Range[0], class_A_IP_Range[1]):
+		if int(self.IP[0]) in range(class_A_IP_Range[0], class_A_IP_Range[1]+1):
 			self.NetAddr   = [self.IP[0], str(0), str(0), str(0)]
 			self.BroadAddr = [self.IP[0], str(255), str(255), str(255)]
 			self.HostOctals = 24
 			self.IPClass   = "A"
 			return
-		if int(self.IP[0]) in range(class_B_IP_Range[0], class_B_IP_Range[1]):
+		if int(self.IP[0]) in range(class_B_IP_Range[0], class_B_IP_Range[1]+1):
 			self.NetAddr   = [self.IP[0], self.IP[1], str(0), str(0)]
 			self.BroadAddr = [self.IP[0], self.IP[1], str(255), str(255)]
 			self.HostOctals = 16
 			self.IPClass   = "B"
 			return
-		if int(self.IP[0]) in range(class_C_IP_Range[0], class_C_IP_Range[1]):
+		if int(self.IP[0]) in range(class_C_IP_Range[0], class_C_IP_Range[1]+1):
 			self.NetAddr   = [self.IP[0], self.IP[1], self.IP[2], str(0)]
 			self.BroadAddr = [self.IP[0], self.IP[1], self.IP[3], str(255)]
 			self.HostOctals = 8
 			self.IPClass   = "C"
 			return
-		if int(self.IP[0]) in range(class_D_IP_Range[0], class_D_IP_Range[1]):
+		if int(self.IP[0]) in range(class_D_IP_Range[0], class_D_IP_Range[1]+1):
 			# pentru clasa D, 28 de biti sunt host, deci in primul octect se face un XOR 11110000 ca sa setam
 			# ultimii 4 biti pe 0 (xxxx xxxx ^ 0xF0) = xxxx 00000
 
 			# pentru a seta ultimii 4 biti din primul octet pe 1, se face un OR cu 0xF (1111)
 			# (xxxx xxxxx | 0xFF ) = xxxx 1111
 			self.NetAddr   = [str(int(self.IP[0]) ^ 0xF0), str(0), str(0), str(0)]
-			self.BroadAddr = [str(int(self.IP[0]) | 0x3), str(1), str(1), str(1)]
+			self.BroadAddr = [str(int(self.IP[0]) | 0x3), str(255), str(255), str(255)]
 			self.HostOctals = 28
 			self.IPClass   = "D"
 			return
 
 		self.NetAddr   = [str(int(self.IP[0]) ^ 0xF0), str(0), str(0), str(0)]
-		self.BroadAddr = [str(int(self.IP[0]) | 0xF), str(1), str(1), str(1)]
+		self.BroadAddr = [str(int(self.IP[0]) | 0xF), str(255), str(255), str(255)]
 		self.HostOctals = 28
 		self.IPClass = "E"
 
