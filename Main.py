@@ -107,3 +107,10 @@ if __name__ == "__main__":
 	print("Intervalul adreselor de subretea este: " + str(test_IP.subNetsDomain[0]) + " - " + str(test_IP.subNetsDomain[test_IP.noSubNets-1]))
 	print("Intervalul adreselor de gazde pentru fiecare subretea este: " + str(test_IP.subNetsDomain[0]) + " - " +
 		  str(test_IP.subNetsDomain[(test_IP.noSubNets-1 * test_IP.noSubNetsHosts-1)]))
+
+	print (" ---------------------> EXERCITIUL 4 <-----------------")
+	ex4list = ["95.0.0.0", "128.0.0.0", "193.0.0.0", "224.0.0.0", "240.0.0.0"]
+	for IP in ex4list:
+		current_IP = IPinfo(IP)
+		print("Un IP din clasa " + current_IP.IPClass + " poate avea maxim " + str(pow(2, (current_IP.HostOctals-2))) + " subretele")
+		#pow(2, (current_IP.HostOctals-2)) 2 la puterea biti imprumutati (numar total de biti gazda - 2, este cel mai mare numar de biti imprumutati posibil)
