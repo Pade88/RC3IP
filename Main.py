@@ -29,19 +29,14 @@ class IPinfo():
 			self.IPClass   = "C"
 			return
 		if int(self.IP[0]) in range(class_D_IP_Range[0], class_D_IP_Range[1]+1):
-			# pentru clasa D, 28 de biti sunt host, deci in primul octect se face un XOR 11110000 ca sa setam
-			# ultimii 4 biti pe 0 (xxxx xxxx ^ 0xF0) = xxxx 00000
-
-			# pentru a seta ultimii 4 biti din primul octet pe 1, se face un OR cu 0xF (1111)
-			# (xxxx xxxxx | 0xFF ) = xxxx 1111
-			self.NetAddr   = "nu exista pentru aceasta clasa"
-			self.BroadAddr = "nu exista pentru aceasta clasa"
+			self.NetAddr   = None
+			self.BroadAddr = None
 			self.HostOctals = 28
 			self.IPClass   = "D"
 			return
 
-		self.NetAddr   = "nu exista pentru aceasta clasa"
-		self.BroadAddr = "nu exista pentru aceasta clasa"
+		self.NetAddr   = None
+		self.BroadAddr = None
 		self.HostOctals = 28
 		self.IPClass = "E"
 
