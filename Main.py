@@ -34,14 +34,14 @@ class IPinfo():
 
 			# pentru a seta ultimii 4 biti din primul octet pe 1, se face un OR cu 0xF (1111)
 			# (xxxx xxxxx | 0xFF ) = xxxx 1111
-			self.NetAddr   = [str(int(self.IP[0]) ^ 0xF0), str(0), str(0), str(0)]
-			self.BroadAddr = [str(int(self.IP[0]) | 0x3), str(255), str(255), str(255)]
+			self.NetAddr   = "nu exista pentru aceasta clasa"
+			self.BroadAddr = "nu exista pentru aceasta clasa"
 			self.HostOctals = 28
 			self.IPClass   = "D"
 			return
 
-		self.NetAddr   = [str(int(self.IP[0]) ^ 0xF0), str(0), str(0), str(0)]
-		self.BroadAddr = [str(int(self.IP[0]) | 0xF), str(255), str(255), str(255)]
+		self.NetAddr   = "nu exista pentru aceasta clasa"
+		self.BroadAddr = "nu exista pentru aceasta clasa"
 		self.HostOctals = 28
 		self.IPClass = "E"
 
@@ -94,8 +94,12 @@ if __name__ == "__main__":
 
 	for IP in ex2list:
 		current_IP = IPinfo(IP)
-		print("IP-ul " + IP + ": este in clasa de IP-uri " + current_IP.IPClass + ", adresa de retea " + current_IP.NetAddr
-			  + ", adresa de broadcast: " + current_IP.BroadAddr)
+		if (current_IP.IPClass in ["A", "B", "C"]):
+			print("IP-ul " + IP + ": este in clasa de IP-uri " + current_IP.IPClass + ", adresa de retea " + current_IP.NetAddr
+				  + ", adresa de broadcast: " + current_IP.BroadAddr)
+		else:
+			print("IP-ul " + IP + ": este in clasa de IP-uri " + current_IP.IPClass +
+				  " adresa de retea si de broadcast nu exista pentru aceasta clasa")
 
 	print (" ---------------------> EXERCITIUL 3 <-----------------")
 	test_IP = IPinfo("190.232.10.211")
